@@ -1,4 +1,5 @@
 import React from "react";
+import Parser from './Parser';
 
 import {
   GoogleMap,
@@ -33,8 +34,7 @@ function Map() {
         <div>Some info here, can take props</div>
       </InfoWindow>
 
-      <Marker
-        position={{ lat: 28.397, lng: -76.644 }} />
+      <Marker position={{ lat: 28.397, lng: -76.644 }} />
 
     </GoogleMap>
   );
@@ -44,14 +44,21 @@ const WrappedMap = withScriptjs(withGoogleMap(Map));
 
 function App() {
   return (
-    <div className="App" style={{ width: "100vw", height: "100vh" }}>
-      <WrappedMap
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `100%` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-      />
-    </div>
+    <>
+      <div className="App" style={{ width: "80vw", height: "50vh" }}>
+        <WrappedMap
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `100%` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
+      </div>
+      <div>
+        <Parser />
+      </div>
+    </>
+
+
   );
 }
 
