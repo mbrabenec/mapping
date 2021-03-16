@@ -7,6 +7,7 @@ import './Parser.css';
 function Parser() {
     const [file, setFile] = useState( null );
     const [status, setStatus] = useState('No file selected');
+    const [array, setArray] = useState(null);    //// WIP
 
     const readFile = () => {
         if (!file) {
@@ -33,12 +34,15 @@ function Parser() {
 
             const geoJson = kml(xml);
             setStatus('Success');
-            console.log(geoJson);
+            // console.log(geoJson);
+
+            setArray(geoJson);
+            // console.log(array);
 
             const coords = geoJson.features.map((feature) => ({
                 lat: feature.geometry.coordinates[0],
-                lng: feature.geometry.coordinates[1],
-                elv: feature.geometry.coordinates[2],
+                lng: feature.geometry.coordinates[1]
+                // elv: feature.geometry.coordinates[2],     //// WIP
             }));
 
             console.log(coords);
