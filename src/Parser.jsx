@@ -4,10 +4,10 @@ import { kml } from "@tmcw/togeojson";
 import './Parser.css';
 
 
-function Parser() {
+function Parser(props) {
     const [file, setFile] = useState( null );
     const [status, setStatus] = useState('No file selected');
-    const [array, setArray] = useState(null);    //// WIP
+    
 
     const readFile = () => {
         if (!file) {
@@ -34,18 +34,19 @@ function Parser() {
 
             const geoJson = kml(xml);
             setStatus('Success');
-            // console.log(geoJson);
-
-            setArray(geoJson);
-            // console.log(array);
 
             const coords = geoJson.features.map((feature) => ({
-                lat: feature.geometry.coordinates[0],
-                lng: feature.geometry.coordinates[1]
+                lng: feature.geometry.coordinates[0],
+                lat: feature.geometry.coordinates[1]
                 // elv: feature.geometry.coordinates[2],     //// WIP
             }));
 
-            console.log(coords);
+//////////////
+
+// LNG/LAT on 39/40 switched - Gulf of Aden
+
+/////////////
+            props.setPolycoords(coords);
         };
 
         reader.readAsText(file);
